@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/quietdw/mywheels/issues"
   },
-  "homepage": "https://github.com/quietdw/mywheels#readme"
+  "homepage": "https://github.com/quietdw/mywheels#readme",
+  "dependencies": {
+    "vue": "^2.6.9"
+  }
 }
