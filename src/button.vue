@@ -1,9 +1,15 @@
 <template>
-  <button class="g-button">hi</button>
+  <button class="g-button" :class="{[`icon-${iconPosition}`]:true}">
+    <svg v-if="icon" class="icon">
+      <use :xlink:href="`#i-${icon}`"></use>
+    </svg>
+    <slot></slot>
+  </button>
 </template>
 
 <script>
 export default {
+  props:['icon','iconPosition'],
 }
 </script>
 
@@ -17,7 +23,10 @@ export default {
       background: var(--botton-bg);
       color: var(--color);
       cursor: pointer;
-
+      display: inline-flex;
+      vertical-align: top;
+      justify-content: center;
+      align-items: center;
       &:hover{
        border-color: var(--border-hover-color);
       }
@@ -28,6 +37,13 @@ export default {
 
       &:focus{
        outline: none;
+      }
+      &.icon-right>.icon{
+        margin-right: .3em;
+      }
+      &.icon-left>.icon{
+        order:1;
+        margin-left: .3em;
       }
     }
 </style>
