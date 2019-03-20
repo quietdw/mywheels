@@ -1,6 +1,6 @@
 <template>
   <svg class="g-icon">
-    <use :xlink:href="`#i-${name}`"></use>
+    <use xlink:href="`#i-${name}`"></use>
   </svg>
 </template>
 <script>
@@ -9,5 +9,19 @@ export default {
 };
 </script>
 <style lang="scss">
-    .g-icon {width: 1em;height: 1em;}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.g-icon {
+  width: 1em;
+  height: 1em;
+}
+.loading {
+  animation: spin 1.5s infinite linear;
+}
 </style>

@@ -1,6 +1,7 @@
 <template>
   <button class="g-button" :class="{[`icon-${iconPosition}`]:true}">
-    <g-icon  v-if="icon" :name="icon"></g-icon>
+    <g-icon v-if="icon && !loading" :name="icon"></g-icon>
+    <g-icon v-if="loading" class="loading" name="loading"></g-icon>
     <slot></slot>
   </button>
 </template>
@@ -9,6 +10,10 @@
 export default {
   props:{
     icon:{},
+    loading:{
+      type:Boolean,
+      default: false
+    },
     iconPosition:{ // key 是传来的属性名字，value是该属性的配置信息
       type:String,
       default: 'left',
@@ -45,12 +50,12 @@ export default {
       &:focus{
        outline: none;
       }
-      &.icon-right>.icon{
-        margin-right: .3em;
-      }
-      &.icon-left>.icon{
+      &.icon-right>.g-icon{
         order:1;
         margin-left: .3em;
+      }
+      &.icon-left>.g-icon{
+        margin-right: .3em;
       }
     }
 </style>
