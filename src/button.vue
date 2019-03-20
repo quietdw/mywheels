@@ -9,7 +9,16 @@
 
 <script>
 export default {
-  props:['icon','iconPosition'],
+  props:{
+    icon:{},
+    iconPosition:{ // key 是传来的属性名字，value是该属性的配置信息
+      type:String,
+      default: 'left',
+      validator:function(value){  // 属性检查器
+        return value ==='left' || value === 'right'
+      }
+    }
+  },
 }
 </script>
 
@@ -17,7 +26,7 @@ export default {
     .g-button{
       font-size: var(--font-size);
       height: var(--button-height);
-      padding: 0 1em;
+      padding: 0 .85em;
       border-radius: var(--border-radius);
       border: 1px solid var(--border-color);
       background: var(--botton-bg);
