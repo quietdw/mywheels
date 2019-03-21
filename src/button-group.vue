@@ -5,7 +5,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted: function() {
+    for (let node of this.$el.children) {
+      let name = node.nodeName.toLowerCase();
+      if (name !== "button") {
+        console.warn(`期望组件第一个元素是g-button，你的第一个元素是${name}`);
+      }
+    }
+  }
+};
 </script>
 
 <style lang="scss">
