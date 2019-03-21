@@ -38,7 +38,7 @@
 <body>
   <div id="app">
     <g-button icon="settings" icon-Position="right">我的按钮</g-button>
-    <g-button icon="favour" :loading="true" icon-Position="left">按钮</g-button>
+    <g-button icon="favour" :loading="loading1" icon-Position="left" v-on:click="loading1=!loading1">按钮</g-button>
     <g-button icon="favour" :loading="true" icon-Position="right">Javascript</g-button>
     <!-- <g-icon class="loading" name="loading"></g-icon> -->
   </div>
