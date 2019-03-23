@@ -10,6 +10,7 @@
 import Icon from "./icon";
 export default {
   components: {
+    name: "my-g-button",
     "g-icon": Icon
   },
   props: {
@@ -31,7 +32,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .g-button {
   font-size: var(--font-size);
   height: var(--button-height);

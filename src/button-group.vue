@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: "my-g-button-group",
   mounted: function() {
     for (let node of this.$el.children) {
       let name = node.nodeName.toLowerCase();
@@ -17,7 +18,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .button-group {
   display: inline-flex;
   vertical-align: center;

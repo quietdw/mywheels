@@ -6,10 +6,11 @@
 <script>
 import "./svg";
 export default {
+  name: "my-g-icon",
   props: ["name"]
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @keyframes spin {
   0% {
     transform: rotate(0deg);
