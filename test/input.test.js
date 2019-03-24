@@ -63,13 +63,21 @@ describe('Input', () => {
     it('支持 change/input/focus/blur 事件', () => {
       ['change', 'input', 'focus', 'blur'].forEach((eventName) => {
         vm = new Constructor({}).$mount()
-        const callback = sinon.fake()
+        const callback = sinon.fake();
         vm.$on(eventName, callback)
-        // 触发event事件
-        let event = new Event(eventName)
+        //触发input的change 事件
+        let event = new Event(eventName);
+        Object.defineProperty(
+          event, 'target', {
+            value: {
+              value: 'hi'
+            },
+            enumerable: true
+          }
+        )
         let inputElement = vm.$el.querySelector('input')
         inputElement.dispatchEvent(event)
-        expect(callback).to.have.been.calledWith(event) // 回调的第一个参数是event
+        expect(callback).to.have.been.calledWith('hi') // 回调的第一个参数是event
       })
     })
   })
