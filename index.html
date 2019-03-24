@@ -55,7 +55,8 @@
 
     <div>
       <g-input value="张三"></g-input>
-      <g-input value="李四"></g-input>
+      <g-input value="李四" v-model="message"></g-input>
+      <p>{{message}}</p>
       <g-input value="李四" disabled></g-input>
       <g-input value="李四" @change="inputChange"></g-input>
       <g-input value="麻" error="姓名太短"></g-input>
