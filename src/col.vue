@@ -1,12 +1,21 @@
 <template>
-  <div class="col">
+  <div class="col" :class="{[`col-${span}`]:true,[`offset-${offset}`]:true}">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: "my-g-col"
+  name: "my-g-col",
+  props: {
+    span: {
+      type: [Number, String]
+    },
+    offset: {
+      type: [Number, String],
+      default: 0
+    }
+  }
 };
 </script>
 
@@ -22,6 +31,14 @@ export default {
   @for $n from 1 through 24 {
     &.#{$class}#{$n} {
       width: ($n/24) * 100%;
+    }
+  }
+
+  $class: offset-;
+
+  @for $n from 1 through 24 {
+    &.#{$class}#{$n} {
+      margin-left: ($n/24) * 100%;
     }
   }
 }
