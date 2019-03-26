@@ -5,6 +5,16 @@
 </template>
 
 <script>
+let validator = value => {
+  let keys = Object.keys(value);
+  let valid = true;
+  keys.forEach(key => {
+    if (!["span", "offset"].includes(key)) {
+      valid = false;
+    }
+  });
+  return valid;
+};
 export default {
   name: "my-g-col",
   props: {
@@ -15,6 +25,22 @@ export default {
     offset: {
       type: [Number, String],
       default: ""
+    },
+    ipad: {
+      type: Object,
+      validator
+    },
+    narrowPc: {
+      type: Object,
+      validator
+    },
+    pc: {
+      type: Object,
+      validator
+    },
+    widePc: {
+      type: Object,
+      validator
     }
   },
   data() {
@@ -30,10 +56,26 @@ export default {
       };
     },
     colClass() {
-      let { span, offset } = this;
+      let { span, offset, ipad, narrowPc, pc, widePc } = this;
       return {
         [span && `col-${span}`]: true,
-        [offset && `offset-${offset}`]: true
+        [offset && `offset-${offset}`]: true,
+        ...(ipad && {
+          [span && `col-ipad-${ipad.span}`]: true,
+          [offset && `offset-ipad-${ipad.offset}`]: true
+        }),
+        ...(narrowPc && {
+          [span && `col-narrowPc-${narrowPc.span}`]: true,
+          [offset && `offset-narrowPc-${narrowPc.offset}`]: true
+        }),
+        ...(pc && {
+          [span && `col-pc-${pc.span}`]: true,
+          [offset && `offset-pc-${pc.offset}`]: true
+        }),
+        ...(widePc && {
+          [span && `col-widePc-${widePc.span}`]: true,
+          [offset && `offset-widePc-${widePc.offset}`]: true
+        })
       };
     }
   }
@@ -45,19 +87,93 @@ export default {
   height: 100px;
   background: aquamarine;
 
-  $class: col-;
+  @media (min-width: 0) {
+    $class: col-;
 
-  @for $n from 1 through 24 {
-    &.#{$class}#{$n} {
-      width: ($n/24) * 100%;
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        width: ($n/24) * 100%;
+      }
+    }
+
+    $class: offset-;
+
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
     }
   }
 
-  $class: offset-;
+  @media (min-width: 577px) {
+    $class: col-ipad-;
 
-  @for $n from 1 through 24 {
-    &.#{$class}#{$n} {
-      margin-left: ($n/24) * 100%;
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        width: ($n/24) * 100%;
+      }
+    }
+
+    $class: offset-ipad-;
+
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 769px) {
+    $class: col-narrow-pc-;
+
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        width: ($n/24) * 100%;
+      }
+    }
+
+    $class: offset-narrow-pc-;
+
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 993px) {
+    $class: col-pc-;
+
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        width: ($n/24) * 100%;
+      }
+    }
+
+    $class: offset-pc-;
+
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
+    }
+  }
+
+  @media (min-width: 1201px) {
+    $class: col-wide-pc-;
+
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        width: ($n/24) * 100%;
+      }
+    }
+
+    $class: offset-wide-pc-;
+
+    @for $n from 1 through 24 {
+      &.#{$class}#{$n} {
+        margin-left: ($n/24) * 100%;
+      }
     }
   }
 }

@@ -13,10 +13,10 @@ export default {
     },
     align: {
       type: String,
+      default: "left",
       validator: function(value) {
         return ["left", "center", "right"].indexOf(value) !== -1;
-      },
-      default: "center"
+      }
     }
   },
   computed: {
@@ -45,6 +45,7 @@ export default {
 <style lang="scss" scoped>
 .row {
   display: flex;
+  flex-wrap: wrap;
   &.align-left {
     justify-content: flex-start;
   }
