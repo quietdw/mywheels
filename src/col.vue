@@ -1,4 +1,13 @@
 <template>
+  <div
+    class="col"
+    :class="{[`col-${span}`]:true,[`offset-${offset}`]:true}"
+    :style="{paddingLeft:gutter/2 + 'px',paddingRight:gutter/2 + 'px'}"
+  >
+    <div style="border: solid 1px red;height:100px">
+      <slot></slot>
+    </div>
+
   <div class="col" :class="{[`col-${span}`]:true,[`offset-${offset}`]:true}">
     <slot></slot>
   </div>
@@ -15,6 +24,14 @@ export default {
       type: [Number, String],
       default: 0
     }
+  },
+  data() {
+    return {
+      gutter: 0
+    };
+  },
+  created() {
+    console.log(this.gutter);
   }
 };
 </script>
@@ -22,8 +39,8 @@ export default {
 <style lang="scss" scoped>
 .col {
   height: 100px;
-  background: aquamarine;
-  border: solid 1px black;
+  // background: aquamarine;
+  // border: solid 1px black;
   width: 50%;
 
   $class: col-;
