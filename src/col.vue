@@ -9,11 +9,12 @@ export default {
   name: "my-g-col",
   props: {
     span: {
-      type: [Number, String]
+      type: [Number, String],
+      default: ""
     },
     offset: {
       type: [Number, String],
-      default: 0
+      default: ""
     }
   },
   data() {
@@ -43,8 +44,6 @@ export default {
 .col {
   height: 100px;
   background: aquamarine;
-  // border: solid 1px black;
-  width: 50%;
 
   $class: col-;
 
