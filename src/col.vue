@@ -19,12 +19,10 @@ export default {
   name: "my-g-col",
   props: {
     span: {
-      type: [Number, String],
-      default: ""
+      type: [Number, String]
     },
     offset: {
-      type: [Number, String],
-      default: ""
+      type: [Number, String]
     },
     ipad: {
       type: Object,
@@ -57,26 +55,34 @@ export default {
     },
     colClass() {
       let { span, offset, ipad, narrowPc, pc, widePc } = this;
+      let createClass = this.createClass;
       return {
-        [span && `col-${span}`]: true,
-        [offset && `offset-${offset}`]: true,
-        ...(ipad && {
-          [span && `col-ipad-${ipad.span}`]: true,
-          [offset && `offset-ipad-${ipad.offset}`]: true
-        }),
-        ...(narrowPc && {
-          [span && `col-narrow-pc-${narrowPc.span}`]: true,
-          [offset && `offset-narrow-pc-${narrowPc.offset}`]: true
-        }),
-        ...(pc && {
-          [span && `col-pc-${pc.span}`]: true,
-          [offset && `offset-pc-${pc.offset}`]: true
-        }),
-        ...(widePc && {
-          [span && `col-widePc-${widePc.span}`]: true,
-          [offset && `offset-widePc-${widePc.offset}`]: true
-        })
+        ...createClass({ span, offset }),
+        ...createClass(ipad, "ipad-"),
+        ...createClass(narrowPc, "narrow-pc-"),
+        ...createClass(pc, "pc-"),
+        ...createClass(widePc, "wide-pc-")
       };
+    }
+  },
+  methods: {
+    createClass(obj, str = "") {
+      // str ： ipad- pc-
+      let spanObj;
+      let offsetObj;
+      if (obj) {
+        if (obj.span) {
+          spanObj = { [obj.span && `col-${str}${obj.span}`]: true };
+        }
+        if (obj.offset) {
+          offsetObj = { [`offset-${str}${obj.offset}`]: true };
+        }
+        obj = { ...spanObj, ...offsetObj };
+      } else {
+        obj = {};
+        return;
+      }
+      return obj;
     }
   }
 };
