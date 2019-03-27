@@ -28,12 +28,15 @@
       font-size: var(--font-size)
     }
 
-    #app {
-      padding: 10px;
-    }
+    #app {}
 
     hr {
       margin: 10px 0;
+    }
+
+    .demo {
+      min-height: 100px;
+      border: solid 1px black;
     }
   </style>
 
@@ -41,6 +44,15 @@
 
 <body>
   <div id="app">
+    <g-layout style="height:100vh">
+      <g-sider class="demo">sider</g-sider>
+      <g-layout class="demo">
+        <g-header class="demo">header</g-header>
+        <g-content class="demo">content</g-content>
+        <g-footer class="demo">footer</g-footer>
+      </g-layout>
+    </g-layout>
+    <!-- <hr>
     <g-row gutter="20">
       <g-col span="23" offset="1" :narrow-pc="{span:'6',offset:'2'}"></g-col>
       <g-col span="23" offset="1" :narrow-pc="{span:'6',offset:'2'}"></g-col>
@@ -71,7 +83,7 @@
       <g-input value="李四" disabled></g-input>
       <g-input value="李四" @change="inputChange"></g-input>
       <g-input value="麻" error="姓名太短"></g-input>
-    </div>
+    </div> -->
   </div>
 
   <script src="./src/app.js"></script>
