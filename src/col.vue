@@ -65,8 +65,8 @@ export default {
           [offset && `offset-ipad-${ipad.offset}`]: true
         }),
         ...(narrowPc && {
-          [span && `col-narrowPc-${narrowPc.span}`]: true,
-          [offset && `offset-narrowPc-${narrowPc.offset}`]: true
+          [span && `col-narrow-pc-${narrowPc.span}`]: true,
+          [offset && `offset-narrow-pc-${narrowPc.offset}`]: true
         }),
         ...(pc && {
           [span && `col-pc-${pc.span}`]: true,
@@ -86,7 +86,7 @@ export default {
 .col {
   height: 100px;
   background: aquamarine;
-
+  border: salmon solid 1px;
   @media (min-width: 0) {
     $class: col-;
 
