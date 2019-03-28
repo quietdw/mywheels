@@ -39,7 +39,14 @@ new Vue({
   },
   methods: {
     xxx() {
-      this.$toast('xxxx')
+      this.$toast('我是信息我是信息我是信息', {
+        closeButton: {
+          text: "知道了",
+          callback: () => {
+            console.log("okokokokokok")
+          }
+        }
+      })
     }
   }
 })
