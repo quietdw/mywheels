@@ -1,5 +1,5 @@
 <template>
-  <div class="toast" ref="wapper">
+  <div class="toast" ref="wapper" :class="toastClass">
     <div class="message">
       <slot v-if="!closeButton.enableHTML"></slot>
       <div v-else v-html="this.$slots.default[0]"></div>
@@ -18,7 +18,7 @@ export default {
     },
     atuoCloseDelay: {
       type: Number,
-      default: 5000000
+      default: 5
     },
     closeButton: {
       type: Object,
@@ -29,6 +29,18 @@ export default {
           enableHTML: false
         };
       }
+    },
+    align: {
+      type: String,
+      default: "top",
+      valitator(value) {
+        return ["top", "middle", "bottom"].indexOf(value) !== -1;
+      }
+    }
+  },
+  computed: {
+    toastClass() {
+      return `align-${this.align}`;
     }
   },
   mounted() {
@@ -64,9 +76,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .toast {
-  position: absolute;
+  position: fixed;
   left: 50%;
-  top: 0;
+
   transform: translateX(-50%);
   min-height: 40px;
   display: flex;
@@ -74,8 +86,21 @@ export default {
   padding: 0 16px;
   background: #a94442;
   color: #fff;
-  border-radius: 0 0 4px 4px;
+
   font-size: 14px;
+  &.align-top {
+    top: 0;
+    border-radius: 0 0 4px 4px;
+  }
+  &.align-middle {
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 4px;
+  }
+  &.align-bottom {
+    bottom: 0;
+    border-radius: 4px 4px 0 0;
+  }
   & > .message {
     padding: 8px 0;
   }

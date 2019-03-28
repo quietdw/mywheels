@@ -46,7 +46,8 @@ new Vue({
             console.log("okokokokokok")
           },
           enableHTML: true
-        }
+        },
+        align: 'bottom'
       })
     }
   }
