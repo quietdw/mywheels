@@ -44,7 +44,9 @@
 
 <body>
   <div id="app">
-    <g-layout style="height:100vh">
+    <g-button @click="xxx">点我</g-button>
+    <hr>
+    <!-- <g-layout style="height:100vh">
       <g-sider class="demo">sider</g-sider>
       <g-layout class="demo">
         <g-header class="demo">header</g-header>
@@ -52,7 +54,7 @@
         <g-footer class="demo">footer</g-footer>
       </g-layout>
     </g-layout>
-    <!-- <hr>
+    <hr>
     <g-row gutter="20">
       <g-col span="23" offset="1" :narrow-pc="{span:'6',offset:'2'}"></g-col>
       <g-col span="23" offset="1" :narrow-pc="{span:'6',offset:'2'}"></g-col>
@@ -64,26 +66,23 @@
       <g-col span="24" :narrow-pc="{span:'8'}"> </g-col>
     </g-row>
     <hr>
-    <div>
-      <g-button icon="settings" icon-Position="right">我的按钮</g-button>
-      <g-button icon="favour" :loading="loading1" icon-Position="left" v-on:click="loading1=!loading1">按钮</g-button>
-      <g-button icon="favour" :loading="true" icon-Position="right">Javascript</g-button>
-      <g-icon class="loading" name="loading"></g-icon>
-      <g-button-group>
-        <g-button icon="left">上一页</g-button>
-        <g-button>更多</g-button>
-        <g-button icon="right" icon-Position="right">下一页</g-button>
-      </g-button-group>
-    </div>
+    <g-button icon="settings" icon-Position="right">我的按钮</g-button>
+    <g-button icon="favour" :loading="loading1" icon-Position="left" v-on:click="loading1=!loading1">按钮</g-button>
+    <g-button icon="favour" :loading="true" icon-Position="right">Javascript</g-button>
+    <g-icon class="loading" name="loading"></g-icon>
+    <g-button-group>
+      <g-button icon="left">上一页</g-button>
+      <g-button>更多</g-button>
+      <g-button icon="right" icon-Position="right">下一页</g-button>
+    </g-button-group>
+
     <hr>
-    <div>
-      <g-input value="张三"></g-input>
-      <g-input value="李四" v-model="message"></g-input>
-      <p>{{message}}</p>
-      <g-input value="李四" disabled></g-input>
-      <g-input value="李四" @change="inputChange"></g-input>
-      <g-input value="麻" error="姓名太短"></g-input>
-    </div> -->
+    <g-input value="张三"></g-input>
+    <g-input value="李四" v-model="message"></g-input>
+    <p>{{message}}</p>
+    <g-input value="李四" disabled></g-input>
+    <g-input value="李四"></g-input>
+    <g-input value="麻" error="姓名太短"></g-input> -->
   </div>
 
   <script src="./src/app.js"></script>
