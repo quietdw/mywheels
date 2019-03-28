@@ -1,7 +1,10 @@
 <template>
-  <div class="toast">
-    <slot></slot>
-    <span class="line"></span>
+  <div class="toast" ref="wapper">
+    <div class="message">
+      <slot v-if="!closeButton.enableHTML"></slot>
+      <div v-else v-html="this.$slots.default[0]"></div>
+    </div>
+    <span class="line" ref="line"></span>
     <span v-if="closeButton" class="close" @click="onCloseButton">{{closeButton.text}}</span>
   </div>
 </template>
@@ -15,26 +18,37 @@ export default {
     },
     atuoCloseDelay: {
       type: Number,
-      default: 5
+      default: 5000000
     },
     closeButton: {
       type: Object,
       default() {
         return {
           text: "关闭",
-          callback: undefined
+          callback: undefined,
+          enableHTML: false
         };
       }
     }
   },
   mounted() {
-    if (this.autoClose) {
-      setTimeout(() => {
-        this.close();
-      }, this.atuoCloseDelay * 1000);
-    }
+    this.updateLineStyle();
+    this.exclAutoClose();
   },
   methods: {
+    updateLineStyle() {
+      this.$nextTick(() => {
+        this.$refs.line.style.height =
+          this.$refs.wapper.getBoundingClientRect().height + "px";
+      });
+    },
+    exclAutoClose() {
+      if (this.autoClose) {
+        setTimeout(() => {
+          this.close();
+        }, this.atuoCloseDelay * 1000);
+      }
+    },
     close() {
       this.$el.remove();
       this.$destroy();
@@ -54,7 +68,7 @@ export default {
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  height: 40px;
+  min-height: 40px;
   display: flex;
   align-items: center;
   padding: 0 16px;
@@ -62,13 +76,17 @@ export default {
   color: #fff;
   border-radius: 0 0 4px 4px;
   font-size: 14px;
+  & > .message {
+    padding: 8px 0;
+  }
   & > .line {
-    border-left: solid white 1px;
+    border-left: solid white 2px;
     display: block;
     height: 100%;
     margin: 0 10px;
   }
   & > .close {
+    flex-shrink: 0;
     cursor: pointer;
   }
 }
