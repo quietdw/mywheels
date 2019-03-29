@@ -29,7 +29,7 @@ describe('Toast', () => {
         done()
       })
     })
-    it('closeButton', () => {
+    it('closeButton', (done) => {
       const callback = sinon.fake()
       vm = new Constructor({
         propsData: {
@@ -41,8 +41,11 @@ describe('Toast', () => {
       }).$mount()
       let colseButton = vm.$el.querySelector('.close')
       expect(colseButton.textContent.trim()).to.eq('关闭123')
-      colseButton.click()
-      expect(callback).to.have.been.called
+      setTimeout(() => {
+        colseButton.click()
+        expect(callback).to.have.been.called
+      }, 0)
+      done()
     })
     it('enableHTML', () => {
       vm = new Constructor({
