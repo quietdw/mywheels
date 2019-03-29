@@ -25,20 +25,16 @@ export default {
       type: [Number, String]
     },
     ipad: {
-      type: Object,
-      validator
+      type: Object
     },
     narrowPc: {
-      type: Object,
-      validator
+      type: Object
     },
     pc: {
-      type: Object,
-      validator
+      type: Object
     },
     widePc: {
-      type: Object,
-      validator
+      type: Object
     }
   },
   data() {
