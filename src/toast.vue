@@ -84,19 +84,27 @@ export default {
 
   &.align-top {
     top: 0;
-    border-radius: 0 0 4px 4px;
     animation: slide-in 0.3s linear;
+    .toast {
+      border-radius: 0 0 4px 4px;
+    }
   }
   &.align-middle {
     top: 50%;
     transform: translateY(-50%);
-    border-radius: 4px;
+
     animation: fade-in 0.3s linear;
+    .toast {
+      border-radius: 4px;
+    }
   }
   &.align-bottom {
     bottom: 0;
-    border-radius: 4px 4px 0 0;
+
     animation: slide-up 0.3s linear;
+    .toast {
+      border-radius: 4px 4px 0 0;
+    }
   }
   @keyframes slide-up {
     0% {
