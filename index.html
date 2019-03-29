@@ -44,9 +44,30 @@
 
 <body>
   <div id="app">
-    <g-button @click="xxx">点我</g-button>
+    <g-tabs :selected.sync="selectedTab">
+      <!-- <g-tabs :selected="selectedTab" @update:selected="selected=$event"> -->
+      <g-tabs-head>
+        <template slot="actions">
+          <g-button>
+            <g-icon name='settings'></g-icon>
+          </g-button>
+        </template>
+        <g-tabs-item name="woman">
+          <g-icon name='settings'></g-icon>
+          女性
+        </g-tabs-item>
+        <g-tabs-item name="finace">财经</g-tabs-item>
+        <g-tabs-item name="sports">体育</g-tabs-item>
+      </g-tabs-head>
+      <g-tabs-body>
+        <g-tabs-pane name="woman">女性相关资讯</g-tabs-pane>
+        <g-tabs-pane name="finace">财经相关资讯</g-tabs-pane>
+        <g-tabs-pane name="sports">体育相关资讯</g-tabs-pane>
+      </g-tabs-body>
+    </g-tabs>
+    <!--<g-button @click="xxx">点我</g-button>
     <hr>
-    <!-- <g-layout style="height:100vh">
+     <g-layout style="height:100vh">
       <g-sider class="demo">sider</g-sider>
       <g-layout class="demo">
         <g-header class="demo">header</g-header>
