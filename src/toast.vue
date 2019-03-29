@@ -2,7 +2,7 @@
   <div class="wapper" :class="toastClass">
     <div class="toast" ref="toast">
       <div class="message">
-        <slot v-if="!closeButton.enableHTML"></slot>
+        <slot v-if="!enableHTML"></slot>
         <div v-else v-html="this.$slots.default[0]"></div>
       </div>
       <span class="line" ref="line"></span>
@@ -15,22 +15,24 @@ export default {
   name: "MyToast",
   props: {
     autoClose: {
-      type: Boolean,
-      default: true
-    },
-    atuoCloseDelay: {
-      type: Number,
-      default: 5
+      type: [Boolean, Number],
+      default: false,
+      valitator(value) {
+        return value === false || typeof value === "number";
+      }
     },
     closeButton: {
       type: Object,
       default() {
         return {
           text: "关闭",
-          callback: undefined,
-          enableHTML: false
+          callback: undefined
         };
       }
+    },
+    enableHTML: {
+      type: Boolean,
+      default: false
     },
     align: {
       type: String,
@@ -52,15 +54,17 @@ export default {
   methods: {
     updateLineStyle() {
       this.$nextTick(() => {
-        this.$refs.line.style.height =
-          this.$refs.toast.getBoundingClientRect().height + "px";
+        if (this.$refs.line) {
+          this.$refs.line.style.height =
+            this.$refs.toast.getBoundingClientRect().height + "px";
+        }
       });
     },
     exclAutoClose() {
       if (this.autoClose) {
         setTimeout(() => {
           this.close();
-        }, this.atuoCloseDelay * 1000);
+        }, this.autoClose * 1000);
       }
     },
     close() {

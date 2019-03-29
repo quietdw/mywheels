@@ -44,10 +44,11 @@ new Vue({
           text: "知道了",
           callback: () => {
             console.log("okokokokokok")
-          },
-          enableHTML: true
+          }
         },
-        align: 'bottom'
+        enableHTML: true,
+        align: 'middle',
+        autoClose: 5
       })
     }
   }

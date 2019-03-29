@@ -4,19 +4,19 @@ let currentToast
 
 export default {
   install(Vue, options) {
-    Vue.prototype.$toast = function (message, buttonOptions) {
+    Vue.prototype.$toast = function (message, buttonOptions, enableHTML) {
       if (currentToast) {
         currentToast.close()
       }
       currentToast = createToast({
         Vue,
+        enableHTML,
         message,
         propsData: buttonOptions,
         onClose: () => {
           currentToast = null
         }
       })
-
     }
   }
 }
