@@ -5,7 +5,13 @@
 </template>
 <script>
 export default {
-  name: "MyTabsPane"
+  name: "MyTabsPane",
+  inject: ["eventBus"],
+  created() {
+    this.eventBus.$on("update:selected", data => {
+      console.log(data);
+    });
+  }
 };
 </script>
 <style lang="scss" scoped>
