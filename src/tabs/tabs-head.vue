@@ -26,11 +26,13 @@ export default {
 <style lang="scss" scoped>
 $table-height: 40px;
 $blue: #409eff;
+$border-color: #e4e7ed;
 .tabs-head {
   display: flex;
   height: $table-height;
   align-items: center;
   position: relative;
+  border-bottom: 1px solid $border-color;
   & > .wapper {
     margin-left: auto;
   }
@@ -38,7 +40,7 @@ $blue: #409eff;
     height: 1px;
     background-color: $blue;
     position: absolute;
-    bottom: 1px;
+    bottom: -1px;
     transition: all 0.3s;
   }
 }

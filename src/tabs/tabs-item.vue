@@ -42,6 +42,7 @@ export default {
 $blue: #409eff;
 .tabs-item {
   display: flex;
+  font-weight: bold;
   align-items: center;
   flex-shrink: 1;
   cursor: pointer;
@@ -49,7 +50,9 @@ $blue: #409eff;
   padding: 0 1em;
   &.active {
     color: $blue;
-    font-weight: bold;
+    .g-icon {
+      fill: $blue;
+    }
   }
 }
 </style>
