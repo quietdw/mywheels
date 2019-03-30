@@ -29,6 +29,11 @@ export default {
     return { eventBus: this.eventBus };
   },
   mounted() {
+    if (this.$children.length === 0) {
+      console &&
+        console.warn &&
+        console.warn("子组件必须为 g-tabs-head 或 g-tabs-body");
+    }
     this.$children.forEach(vm => {
       if (vm.$options.name === "MyTabsHead") {
         vm.$children.forEach(childvm => {
