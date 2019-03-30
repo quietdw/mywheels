@@ -1,5 +1,5 @@
 <template>
-  <div class="tabs-item" @click="xxx" :class="classes">
+  <div class="tabs-item" @click="onClick" :class="classes">
     <slot></slot>
   </div>
 </template>
@@ -9,7 +9,8 @@ export default {
   inject: ["eventBus"],
   props: {
     disabled: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     name: {
       type: Boolean | Number,
@@ -23,7 +24,10 @@ export default {
   },
   computed: {
     classes() {
-      return { active: this.active };
+      return {
+        active: this.active,
+        disabled: this.disabled
+      };
     }
   },
   created() {
@@ -32,7 +36,10 @@ export default {
     });
   },
   methods: {
-    xxx() {
+    onClick() {
+      if (this.disabled) {
+        return;
+      }
       this.eventBus.$emit("update:selected", this.name, this);
     }
   }
@@ -40,6 +47,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 $blue: #409eff;
+$disabled-text-color: #ccc;
 .tabs-item {
   display: flex;
   font-weight: bold;
@@ -52,6 +60,13 @@ $blue: #409eff;
     color: $blue;
     .g-icon {
       fill: $blue;
+    }
+  }
+  &.disabled {
+    color: $disabled-text-color;
+    cursor: not-allowed;
+    .g-icon {
+      fill: $disabled-text-color;
     }
   }
 }
