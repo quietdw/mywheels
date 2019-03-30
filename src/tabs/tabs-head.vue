@@ -11,9 +11,6 @@
 export default {
   name: "MyTabsHead",
   inject: ["eventBus"],
-  data() {
-    return {};
-  },
   mounted() {
     this.eventBus.$on("update:selected", (item, vm) => {
       let { width, height, top, left } = vm.$el.getBoundingClientRect();
