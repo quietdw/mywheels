@@ -1,7 +1,7 @@
 <template>
   <div class="tabs-head">
     <slot></slot>
-    <div class="line"></div>
+    <div class="line" ref="line"></div>
     <div class="wapper">
       <slot name="actions"></slot>
     </div>
@@ -11,10 +11,14 @@
 export default {
   name: "MyTabsHead",
   inject: ["eventBus"],
-  created() {
+  data() {
+    return {};
+  },
+  mounted() {
     this.eventBus.$on("update:selected", (item, vm) => {
-      console.log(item);
-      console.log(vm);
+      let { width, height, top, left } = vm.$el.getBoundingClientRect();
+      this.$refs.line.style.width = width + "px";
+      this.$refs.line.style.left = `${left}px`;
     });
   }
 };
@@ -31,11 +35,11 @@ $blue: #409eff;
     margin-left: auto;
   }
   & > .line {
-    width: 100%;
     height: 1px;
     background-color: $blue;
     position: absolute;
     bottom: 1px;
+    transition: all 0.3s;
   }
 }
 </style>
