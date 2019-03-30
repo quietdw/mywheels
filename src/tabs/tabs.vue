@@ -29,7 +29,17 @@ export default {
     return { eventBus: this.eventBus };
   },
   mounted() {
-    this.eventBus.$emit("update:selected", this.selected); // 确保子元素已经创建好了
+    this.$children.forEach(vm => {
+      if (vm.$options.name === "MyTabsHead") {
+        vm.$children.forEach(childvm => {
+          if (
+            childvm.$options.name === "MyTabsItem" &&
+            childvm.name === this.selected
+          )
+            this.eventBus.$emit("update:selected", this.selected, childvm); // 确保子元素已经创建好了
+        });
+      }
+    });
   }
 };
 </script>

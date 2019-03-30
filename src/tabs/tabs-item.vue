@@ -33,20 +33,23 @@ export default {
   },
   methods: {
     xxx() {
-      this.eventBus.$emit("update:selected", this.name);
+      this.eventBus.$emit("update:selected", this.name, this);
     }
   }
 };
 </script>
 <style lang="scss" scoped>
+$blue: #409eff;
 .tabs-item {
   display: flex;
   align-items: center;
   flex-shrink: 1;
   cursor: pointer;
+  height: 100%;
   padding: 0 1em;
   &.active {
-    background: red;
+    color: $blue;
+    font-weight: bold;
   }
 }
 </style>
