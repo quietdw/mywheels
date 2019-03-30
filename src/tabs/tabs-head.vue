@@ -1,7 +1,9 @@
 <template>
   <div class="tabs-head">
     <slot></slot>
-    <slot name="actions"></slot>
+    <div class="wapper">
+      <slot name="actions"></slot>
+    </div>
   </div>
 </template>
 <script>
@@ -11,7 +13,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .tabs-head {
+  display: flex;
+  & > .wapper {
+    margin-left: auto;
+  }
 }
-</style
-  name:'MyTabsHead'
->
+</style>

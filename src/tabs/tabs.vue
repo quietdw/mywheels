@@ -27,6 +27,9 @@ export default {
   },
   provide() {
     return { eventBus: this.eventBus };
+  },
+  mounted() {
+    this.eventBus.$emit("update:selected", this.selected); // 确保子元素已经创建好了
   }
 };
 </script>
