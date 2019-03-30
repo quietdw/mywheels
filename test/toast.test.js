@@ -44,10 +44,10 @@ describe('Toast', () => {
       setTimeout(() => {
         colseButton.click()
         expect(callback).to.have.been.called
+        done()
       }, 0)
-      done()
     })
-    it('enableHTML', () => {
+    it('enableHTML', (done) => {
       vm = new Constructor({
         propsData: {
           enableHTML: true
@@ -57,17 +57,25 @@ describe('Toast', () => {
       vm.$slots.default = ['<strong id ="hihi">111</strong>']
       vm.$mount()
       let messageStrong = vm.$el.querySelector('#hihi')
-      expect(messageStrong.textContent.trim()).to.eq('111')
+      setTimeout(() => {
+        expect(messageStrong.textContent.trim()).to.eq('111')
+        done()
+      }, 0)
+
     })
-    it('align', () => {
+    it('align', (done) => {
       const div = document.createElement('div')
       document.body.appendChild(div)
       vm = new Constructor({
         propsData: {
           align: 'middle'
         }
-      }).$mount(div)
-      expect(vm.$el.classList.contains('align-middle')).to.eq(true)
+      }).$mount()
+      setTimeout(() => {
+        expect(vm.$el.classList.contains('align-middle')).to.eq(true)
+        done()
+      }, 0)
+
     })
 
   })
