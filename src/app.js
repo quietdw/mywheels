@@ -62,6 +62,10 @@ new Vue({
         align: 'middle',
         autoClose: 5
       })
+    },
+    yyy() {
+      console.log('yyy')
     }
   }
+
 })
