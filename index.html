@@ -44,8 +44,21 @@
 
 <body>
   <div id="app">
+    <g-popover>
+      <template slot="content">
+        <div>内容1内容1内容1内容1</div>
+      </template>
+      <button>点我</button>
+    </g-popover>
+    <g-popover>
+      <template slot="content">
+        <div>内容2内容2内容2内容2</div>
+      </template>
+      <button>点我</button>
+    </g-popover>
+    <hr>
+    <!--
     <g-tabs :selected.sync="selectedTab">
-      <!-- <g-tabs :selected="selectedTab" @update:selected="selected=$event"> -->
       <g-tabs-head>
         <template slot="actions">
           <button>
@@ -65,7 +78,7 @@
         <g-tabs-pane name="sports">体育相关资讯</g-tabs-pane>
       </g-tabs-body>
     </g-tabs>
-    <!--<g-button @click="xxx">点我</g-button>
+    <g-button @click="xxx">点我</g-button>
     <hr>
      <g-layout style="height:100vh">
       <g-sider class="demo">sider</g-sider>
