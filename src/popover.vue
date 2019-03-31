@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" @click="xxx">
+  <div class="popover" @click="xxx" ref="popover">
     <div class="content-wapper" v-if="visible" ref="contentWapper">
       <slot name="content"></slot>
     </div>
@@ -19,28 +19,53 @@ export default {
   },
   mounted() {},
   methods: {
-    xxx() {
-      this.visible = !this.visible;
-      if (this.visible === true) {
-        this.$nextTick(() => {
-          document.body.appendChild(this.$refs.contentWapper);
-          let {
-            width,
-            height,
-            left,
-            top
-          } = this.$refs.triggerWrapper.getBoundingClientRect();
-          this.$refs.contentWapper.style.left = left + window.scrollX + "px";
-          this.$refs.contentWapper.style.top = top + window.scrollY + "px";
-          let eventHandler = () => {
-            this.visible = false;
-            document.removeEventListener("click", eventHandler);
-            console.log("docu隐藏了popover");
-          };
-          document.addEventListener("click", eventHandler);
-        });
-      } else {
-        console.log("vm隐藏了popover");
+    positionContent() {
+      document.body.appendChild(this.$refs.contentWapper);
+      let {
+        width,
+        height,
+        left,
+        top
+      } = this.$refs.triggerWrapper.getBoundingClientRect();
+      this.$refs.contentWapper.style.left = left + window.scrollX + "px";
+      this.$refs.contentWapper.style.top = top + window.scrollY + "px";
+    },
+    eventHandler(e) {
+      if (
+        this.$refs.popover &&
+        (this.$refs.popover.contains(e.target) ||
+          this.$refs.popover === e.target)
+      ) {
+        return;
+      }
+      if (
+        this.$refs.contentWapper &&
+        (this.$refs.contentWapper.contains(e.target) ||
+          this.$refs.contentWapper === e.target)
+      ) {
+        return;
+      }
+      this.close();
+    },
+    show() {
+      this.visible = true;
+      setTimeout(() => {
+        this.positionContent();
+        document.addEventListener("click", this.eventHandler);
+      }, 0);
+    },
+    close() {
+      console.log("关闭了");
+      this.visible = false;
+      document.removeEventListener("click", this.eventHandler);
+    },
+    xxx(event) {
+      if (this.$refs.triggerWrapper.contains(event.target)) {
+        if (this.visible) {
+          this.close();
+        } else {
+          this.show();
+        }
       }
     }
   }
