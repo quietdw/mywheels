@@ -21,8 +21,8 @@ export default {
   methods: {
     xxx() {
       this.visible = !this.visible;
-      setTimeout(() => {
-        if (this.visible) {
+      if (this.visible === true) {
+        this.$nextTick(() => {
           document.body.appendChild(this.$refs.contentWapper);
           let {
             width,
@@ -30,17 +30,18 @@ export default {
             left,
             top
           } = this.$refs.triggerWrapper.getBoundingClientRect();
-          let content = this.$refs.contentWapper;
-          content.style.left = `${left}px`;
-          content.style.top = `${top}px`;
+          this.$refs.contentWapper.style.left = left + window.scrollX + "px";
+          this.$refs.contentWapper.style.top = top + window.scrollY + "px";
+          let eventHandler = () => {
+            this.visible = false;
+            document.removeEventListener("click", eventHandler);
+            console.log("docu隐藏了popover");
+          };
           document.addEventListener("click", eventHandler);
-        }
-      }, 0);
-
-      let eventHandler = () => {
-        this.visible = false;
-        document.removeEventListener("click", eventHandler);
-      };
+        });
+      } else {
+        console.log("vm隐藏了popover");
+      }
     }
   }
 };
@@ -50,7 +51,6 @@ export default {
   display: inline-block;
   vertical-align: top;
   position: relative;
-  margin: 100px 0 0 100px;
   .content-wapper {
     position: absolute;
     bottom: 100%;
