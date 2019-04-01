@@ -36,28 +36,25 @@ export default {
   mounted() {},
   methods: {
     positionContent() {
-      document.body.appendChild(this.$refs.contentWapper);
-      let {
-        width,
-        height,
-        left,
-        top
-      } = this.$refs.triggerWrapper.getBoundingClientRect();
-      if (this.position === "top") {
-        this.$refs.contentWapper.style.left = left + window.scrollX + "px";
-        this.$refs.contentWapper.style.top = top + window.scrollY + "px";
-      } else if (this.position === "right") {
-        this.$refs.contentWapper.style.left =
-          left + width + window.scrollX + "px";
-        this.$refs.contentWapper.style.top = top + window.scrollY + "px";
-      } else if (this.position === "bottom") {
-        this.$refs.contentWapper.style.left = left + window.scrollX + "px";
-        this.$refs.contentWapper.style.top =
-          top + height + window.scrollY + "px";
-      } else if (this.position === "left") {
-        this.$refs.contentWapper.style.left = left + window.scrollX + "px";
-        this.$refs.contentWapper.style.top = top + window.scrollY + "px";
-      }
+      let { contentWapper, triggerWrapper } = this.$refs;
+      document.body.appendChild(contentWapper);
+      let { width, height, left, top } = triggerWrapper.getBoundingClientRect();
+
+      let positions = {
+        top: { left: left + window.scrollX, top: top + window.scrollY },
+        right: {
+          left: left + width + window.scrollX,
+          top: top + window.scrollY
+        },
+        bottom: {
+          left: left + window.scrollX,
+          top: top + height + window.scrollY
+        },
+        left: { left: left + window.scrollX, top: top + window.scrollY }
+      };
+
+      contentWapper.style.left = positions[this.position].left + "px";
+      contentWapper.style.top = positions[this.position].top + "px";
     },
     eventHandler(e) {
       if (
@@ -162,7 +159,7 @@ $border-radius: 4px;
 
   &.position-left {
     transform: translateX(-100%);
-    margin-top: -10px;
+    top: 50%;
     margin-left: -10px;
     & ::before,
     &::after {
@@ -177,7 +174,7 @@ $border-radius: 4px;
   }
 
   &.position-right {
-    margin-top: -10px;
+    top: 50%;
     margin-left: 10px;
     & ::before,
     &::after {
