@@ -1,6 +1,6 @@
 <template>
   <div class="popover" @click="xxx" ref="popover">
-    <div class="content-wapper" v-if="visible" ref="contentWapper">
+    <div class="content-wapper" v-if="visible" ref="contentWapper" :class="classes">
       <slot name="content"></slot>
     </div>
     <span class="trigger-wrapper" ref="triggerWrapper">
@@ -12,10 +12,26 @@
 <script>
 export default {
   name: "MyPppover",
+  props: {
+    position: {
+      type: String,
+      default: "top",
+      valitator(value) {
+        return ["top", "right", "bottom", "left"].indexOf(value) !== -1;
+      }
+    }
+  },
   data() {
     return {
       visible: false
     };
+  },
+  computed: {
+    classes() {
+      return {
+        [`position-${this.position}`]: this.position
+      };
+    }
   },
   mounted() {},
   methods: {
@@ -27,8 +43,21 @@ export default {
         left,
         top
       } = this.$refs.triggerWrapper.getBoundingClientRect();
-      this.$refs.contentWapper.style.left = left + window.scrollX + "px";
-      this.$refs.contentWapper.style.top = top + window.scrollY + "px";
+      if (this.position === "top") {
+        this.$refs.contentWapper.style.left = left + window.scrollX + "px";
+        this.$refs.contentWapper.style.top = top + window.scrollY + "px";
+      } else if (this.position === "right") {
+        this.$refs.contentWapper.style.left =
+          left + width + window.scrollX + "px";
+        this.$refs.contentWapper.style.top = top + window.scrollY + "px";
+      } else if (this.position === "bottom") {
+        this.$refs.contentWapper.style.left = left + window.scrollX + "px";
+        this.$refs.contentWapper.style.top =
+          top + height + window.scrollY + "px";
+      } else if (this.position === "left") {
+        this.$refs.contentWapper.style.left = left + window.scrollX + "px";
+        this.$refs.contentWapper.style.top = top + window.scrollY + "px";
+      }
     },
     eventHandler(e) {
       if (
@@ -78,19 +107,19 @@ $border-radius: 4px;
   display: inline-block;
   vertical-align: top;
   position: relative;
-  .content-wapper {
-    position: absolute;
-    bottom: 100%;
-    left: 0;
+  & .content-wapper {
+    visibility: hidden;
+  }
+  & > .trigger-wrapper {
+    display: inline-block;
+    vertical-align: top;
   }
 }
 .content-wapper {
   position: absolute;
-  transform: translateY(-100%);
   border: $border-color solid 1px;
   border-radius: $border-radius;
   padding: 0.5em;
-  margin-top: -10px;
   max-width: 20em;
   word-break: break-all;
   background: #fff;
@@ -100,14 +129,66 @@ $border-radius: 4px;
     content: "";
     position: absolute;
     border: solid 6px transparent;
-    border-top: $border-color solid 6px;
-    left: 10px;
-    top: 100%;
   }
 
-  &::after {
-    border-top: #fff solid 6px;
-    top: calc(100% - 1px);
+  &.position-top {
+    transform: translateY(-100%);
+    margin-top: -10px;
+    & ::before,
+    &::after {
+      border-top: $border-color solid 6px;
+      left: 10px;
+      top: 100%;
+    }
+    &::after {
+      border-top: #fff solid 6px;
+      top: calc(100% - 1px);
+    }
+  }
+
+  &.position-bottom {
+    margin-top: 10px;
+    & ::before,
+    &::after {
+      border-bottom: $border-color solid 6px;
+      left: 10px;
+      bottom: 100%;
+    }
+    &::after {
+      border-bottom: #fff solid 6px;
+      bottom: calc(100% - 1px);
+    }
+  }
+
+  &.position-left {
+    transform: translateX(-100%);
+    margin-top: -10px;
+    margin-left: -10px;
+    & ::before,
+    &::after {
+      border-left: $border-color solid 6px;
+      top: 10px;
+      left: 100%;
+    }
+    &::after {
+      border-left: #fff solid 6px;
+      left: calc(100% - 1px);
+    }
+  }
+
+  &.position-right {
+    margin-top: -10px;
+    margin-left: 10px;
+    & ::before,
+    &::after {
+      border-right: $border-color solid 6px;
+      top: 10px;
+      right: 100%;
+    }
+    &::after {
+      border-right: #fff solid 6px;
+      right: calc(100% - 1px);
+    }
   }
 }
 </style>
