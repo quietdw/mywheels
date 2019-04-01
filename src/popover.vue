@@ -72,6 +72,8 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+$border-color: #999;
+$border-radius: 4px;
 .popover {
   display: inline-block;
   vertical-align: top;
@@ -85,5 +87,27 @@ export default {
 .content-wapper {
   position: absolute;
   transform: translateY(-100%);
+  border: $border-color solid 1px;
+  border-radius: $border-radius;
+  padding: 0.5em;
+  margin-top: -10px;
+  max-width: 20em;
+  word-break: break-all;
+  background: #fff;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.7));
+  & ::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border: solid 6px transparent;
+    border-top: $border-color solid 6px;
+    left: 10px;
+    top: 100%;
+  }
+
+  &::after {
+    border-top: #fff solid 6px;
+    top: calc(100% - 1px);
+  }
 }
 </style>
