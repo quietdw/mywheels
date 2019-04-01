@@ -29,22 +29,30 @@ export default {
     return { eventBus: this.eventBus };
   },
   mounted() {
-    if (this.$children.length === 0) {
-      console &&
-        console.warn &&
-        console.warn("子组件必须为 g-tabs-head 或 g-tabs-body");
-    }
-    this.$children.forEach(vm => {
-      if (vm.$options.name === "MyTabsHead") {
-        vm.$children.forEach(childvm => {
-          if (
-            childvm.$options.name === "MyTabsItem" &&
-            childvm.name === this.selected
-          )
-            this.eventBus.$emit("update:selected", this.selected, childvm); // 确保子元素已经创建好了
-        });
+    this.tabsWarning();
+    this.selectedItem();
+  },
+  methods: {
+    tabsWarning() {
+      if (this.$children.length === 0) {
+        console &&
+          console.warn &&
+          console.warn("子组件必须为 g-tabs-head 或 g-tabs-body");
       }
-    });
+    },
+    selectedItem() {
+      this.$children.forEach(vm => {
+        if (vm.$options.name === "MyTabsHead") {
+          vm.$children.forEach(childvm => {
+            if (
+              childvm.$options.name === "MyTabsItem" &&
+              childvm.name === this.selected
+            )
+              this.eventBus.$emit("update:selected", this.selected, childvm); // 确保子元素已经创建好了
+          });
+        }
+      });
+    }
   }
 };
 </script>
