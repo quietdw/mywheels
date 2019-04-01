@@ -1,5 +1,5 @@
 <template>
-  <div class="popover" @click="xxx" ref="popover">
+  <div class="popover" ref="popover">
     <div class="content-wapper" v-if="visible" ref="contentWapper" :class="classes">
       <slot name="content"></slot>
     </div>
@@ -19,6 +19,13 @@ export default {
       valitator(value) {
         return ["top", "right", "bottom", "left"].indexOf(value) !== -1;
       }
+    },
+    trigger: {
+      type: String,
+      default: "click",
+      valitator(value) {
+        return ["click", "hover"].indexOf(value) !== -1;
+      }
     }
   },
   data() {
@@ -31,9 +38,46 @@ export default {
       return {
         [`position-${this.position}`]: this.position
       };
+    },
+    openEvent() {
+      if (this.trigger === "click") {
+        return "click";
+      } else {
+        return "mouseenter";
+      }
+    },
+    closeEvent() {
+      if (this.trigger === "click") {
+        return "click";
+      } else {
+        return "mouseleave";
+      }
     }
   },
-  mounted() {},
+  mounted() {
+    if (this.trigger === "click") {
+      this.$refs.triggerWrapper.addEventListener("click", this.onClick);
+    } else {
+      this.$refs.triggerWrapper.addEventListener("mouseenter", () => {
+        this.show();
+      });
+      this.$refs.triggerWrapper.addEventListener("mouseleave", () => {
+        this.close();
+      });
+    }
+  },
+  destory() {
+    if (this.trigger === "click") {
+      this.$refs.triggerWrapper.removeEventListener("click", this.onClick);
+    } else {
+      this.$refs.triggerWrapper.removeEventListener("mouseenter", () => {
+        this.show();
+      });
+      this.$refs.triggerWrapper.removeEventListener("mouseleave", () => {
+        this.close();
+      });
+    }
+  },
   methods: {
     positionContent() {
       let { contentWapper, triggerWrapper } = this.$refs;
@@ -85,7 +129,7 @@ export default {
       this.visible = false;
       document.removeEventListener("click", this.eventHandler);
     },
-    xxx(event) {
+    onClick(event) {
       if (this.$refs.triggerWrapper.contains(event.target)) {
         if (this.visible) {
           this.close();
