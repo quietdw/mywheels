@@ -43,13 +43,26 @@
 </head>
 
 <body>
-  <div id="app" style="margin: 50px; border:solid 1px red;">
-    <div style="overflow: hidden; border:solid 1px red;" @click="yyy" >
-      <g-popover>
+  <div id="app" style="margin: 50px; ">
+    <g-collapse>
+      <g-collapse-item title="标题1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit itaque ab esse
+        voluptates dolores at asperiores ad? Ipsam voluptatem consectetur corrupti alias nisi, labore maiores cumque
+        eaque harum, vero accusamus.</g-collapse-item>
+      <g-collapse-item title="标题2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit itaque ab esse
+        voluptates dolores at asperiores ad? Ipsam voluptatem consectetur corrupti alias nisi, labore maiores cumque
+        eaque harum, vero accusamus.</g-collapse-item>
+      <g-collapse-item title="标题3">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit itaque ab esse
+        voluptates dolores at asperiores ad? Ipsam voluptatem consectetur corrupti alias nisi, labore maiores cumque
+        eaque harum, vero accusamus.</g-collapse-item>
+    </g-collapse>
+
+    <!--
+    <div style="overflow: hidden; border:solid 1px red;" @click="yyy">
+      <g-popover position="left">
         <template slot="content">
           <div>内容1内容1内容1内容1</div>
         </template>
-        <button >点我</button>
+        <button>点我</button>
       </g-popover>
       <g-popover>
         <template slot="content">
@@ -59,7 +72,7 @@
       </g-popover>
     </div>
 
-    <!--
+
     <g-tabs :selected.sync="selectedTab">
       <g-tabs-head>
         <template slot="actions">
