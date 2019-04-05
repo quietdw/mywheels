@@ -9,8 +9,8 @@
 <script>
 import Icon from "./icon";
 export default {
+  name: "my-g-button",
   components: {
-    name: "my-g-button",
     "g-icon": Icon
   },
   props: {
