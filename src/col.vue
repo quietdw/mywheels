@@ -86,9 +86,6 @@ export default {
 
 <style lang="scss" scoped>
 .col {
-  height: 100px;
-  background: aquamarine;
-  border: salmon solid 1px;
   @media (min-width: 0) {
     $class: col-;
 

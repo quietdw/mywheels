@@ -46,16 +46,18 @@ export default {
 <style lang="scss" scoped>
 $border-color: grey;
 $border-radius: 4px;
+$collapse-item-min-height: 32px;
+$collapse-padding: 8px;
 .collapse-item {
   > .title {
     border: 1px solid $border-color;
     margin-top: -1px;
     margin-left: -1px;
     margin-right: -1px;
-    min-height: 32px;
+    min-height: $collapse-item-min-height;
     display: flex;
     align-items: center;
-    padding: 8px;
+    padding: $collapse-padding;
   }
   &:first-child {
     > .title {
@@ -70,7 +72,7 @@ $border-radius: 4px;
     }
   }
   .content {
-    padding: 8px;
+    padding: $collapse-padding;
   }
 }
 </style>

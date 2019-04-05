@@ -33,25 +33,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$border-radius: 4px;
+$font-size: 14px;
+$button-height: 32px;
+$button-bg: #fff;
+$button-active-bg: #eee;
+$border-color: #999;
+$border-hover-color: #666;
+$color: #333;
+
 .g-button {
-  font-size: var(--font-size);
-  height: var(--button-height);
+  font-size: $font-size;
+  height: $button-height;
   padding: 0 0.85em;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--border-color);
-  background: var(--botton-bg);
-  color: var(--color);
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  background: $button-bg;
+  color: $color;
   cursor: pointer;
   display: inline-flex;
   vertical-align: top;
   justify-content: center;
   align-items: center;
   &:hover {
-    border-color: var(--border-hover-color);
+    border-color: $border-hover-color;
   }
 
   &:active {
-    background-color: var(--button-active-bg);
+    background-color: $button-active-bg;
   }
 
   &:focus {

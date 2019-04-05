@@ -55,7 +55,7 @@ export default {
     updateLineStyle() {
       this.$nextTick(() => {
         this.$refs.line.style.height =
-            this.$refs.toast.getBoundingClientRect().height + "px";
+          this.$refs.toast.getBoundingClientRect().height + "px";
       });
     },
     exclAutoClose() {
@@ -80,6 +80,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$border-radius: 4px;
+$toast-min-height: 32px;
+$font-size: 14px;
+$toast-color: #000;
+$toast-bg: #fff;
 .wapper {
   position: fixed;
   left: 50%;
@@ -88,7 +93,7 @@ export default {
     top: 0;
     animation: slide-in 0.3s linear;
     .toast {
-      border-radius: 0 0 4px 4px;
+      border-radius: 0 0 $border-radius $border-radius;
     }
   }
   &.align-middle {
@@ -97,7 +102,7 @@ export default {
 
     animation: fade-in 0.3s linear;
     .toast {
-      border-radius: 4px;
+      border-radius: $border-radius;
     }
   }
   &.align-bottom {
@@ -105,7 +110,7 @@ export default {
 
     animation: slide-up 0.3s linear;
     .toast {
-      border-radius: 4px 4px 0 0;
+      border-radius: $border-radius $border-radius 0 0;
     }
   }
   @keyframes slide-up {
@@ -138,13 +143,13 @@ export default {
   }
   .toast {
     transform: translateX(-50%);
-    min-height: 40px;
+    min-height: $toast-min-height;
     display: flex;
     align-items: center;
     padding: 0 16px;
-    background: #a94442;
-    color: #fff;
-    font-size: 14px;
+    background: $toast-bg;
+    color: toast-color;
+    font-size: $font-size;
     & > .message {
       padding: 8px 0;
     }
