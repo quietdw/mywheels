@@ -51,7 +51,7 @@ new Vue({
   data: {
     loading1: false,
     message: "hi",
-    selectedTab: 'sports'
+    selectedTab: '1'
   },
   created() {
 
