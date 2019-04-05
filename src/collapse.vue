@@ -25,23 +25,35 @@ export default {
     return { eventBus: this.eventBus };
   },
   mounted() {
-    this.eventBus.$emit("update:selected", this.selected);
+    this.updateItems(this.selected);
     this.eventBus.$on("update:addSelected", name => {
+      this.addSelected(name);
+    });
+    this.eventBus.$on("update:removeSelected", name => {
+      this.removeSelected(name);
+    });
+  },
+  methods: {
+    updateItems(selected) {
+      this.eventBus.$emit("update:selected", selected);
+    },
+    addSelected(name) {
       let newSelected = JSON.parse(JSON.stringify(this.selected));
       if (this.single === true) {
         newSelected = [name];
       } else {
         newSelected.push(name);
       }
-      this.eventBus.$emit("update:selected", newSelected);
+      this.updateItems(newSelected);
       this.$emit("update:selected", newSelected);
-    });
-    this.eventBus.$on("update:removeSelected", name => {
-      let index = this.selected.indexOf(name);
-      this.selected.splice(index, 1);
-      this.eventBus.$emit("update:selected", this.selected);
-      this.$emit("update:selected", this.selected);
-    });
+    },
+    removeSelected(name) {
+      let newSelected = JSON.parse(JSON.stringify(this.selected));
+      let index = newSelected.indexOf(name);
+      newSelected.splice(index, 1);
+      this.updateItems(newSelected);
+      this.$emit("update:selected", newSelected);
+    }
   }
 };
 </script>
