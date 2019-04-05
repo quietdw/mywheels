@@ -15,18 +15,32 @@ export default {
       default: false
     },
     selected: {
-      type: String
+      type: Array
     }
   },
   provide() {
-    if (this.single) {
-      return { eventBus: this.eventBus };
-    }
+    // if (this.single) {
+    //   return {  };
+    // }
+    return { eventBus: this.eventBus };
   },
   mounted() {
     this.eventBus.$emit("update:selected", this.selected);
-    this.eventBus.$on("update:selected", name => {
-      this.$emit("update:selected", name);
+    this.eventBus.$on("update:addSelected", name => {
+      let newSelected = JSON.parse(JSON.stringify(this.selected));
+      if (this.single === true) {
+        newSelected = [name];
+      } else {
+        newSelected.push(name);
+      }
+      this.eventBus.$emit("update:selected", newSelected);
+      this.$emit("update:selected", newSelected);
+    });
+    this.eventBus.$on("update:removeSelected", name => {
+      let index = this.selected.indexOf(name);
+      this.selected.splice(index, 1);
+      this.eventBus.$emit("update:selected", this.selected);
+      this.$emit("update:selected", this.selected);
     });
   }
 };

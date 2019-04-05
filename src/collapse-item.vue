@@ -10,7 +10,7 @@
 export default {
   name: "MyCollapseItem",
   data() {
-    return { open: false };
+    return { open: false, single: false };
   },
   inject: ["eventBus"],
   props: {
@@ -25,25 +25,20 @@ export default {
   },
   mounted() {
     this.eventBus &&
-      this.eventBus.$on("update:selected", name => {
-        if (name !== this.name) {
-          this.close();
-        } else this.show();
+      this.eventBus.$on("update:selected", names => {
+        if (names.indexOf(this.name) === -1) {
+          this.open = false;
+        } else this.open = true;
       });
   },
   methods: {
     toggle() {
       if (this.open === false) {
-        this.eventBus && this.eventBus.$emit("update:selected", this.name);
+        this.eventBus && this.eventBus.$emit("update:addSelected", this.name);
       } else {
-        this.close();
+        this.eventBus &&
+          this.eventBus.$emit("update:removeSelected", this.name);
       }
-    },
-    close() {
-      this.open = false;
-    },
-    show() {
-      this.open = true;
     }
   }
 };
