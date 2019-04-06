@@ -1,7 +1,7 @@
 <template>
   <div>
     <g-button>默认按钮</g-button>
-    <g-button>默认按钮</g-button>
+    <g-button loading>加载</g-button>
     <g-button>
       <g-icon name="settings"></g-icon>有图标的
     </g-button>

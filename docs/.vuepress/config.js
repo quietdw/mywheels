@@ -1,4 +1,5 @@
 module.exports = {
+  base: '/mywheels/',
   title: 'AwesomeUI',
   description: 'amazing!',
   themeConfig: {
