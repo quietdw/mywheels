@@ -27,9 +27,9 @@ export default {
     <g-button>
       <g-icon name="settings"></g-icon>有图标的
     </g-button>
-    <g-button>
+    <g-button iconPosition="right">
       <g-icon name="settings"></g-icon>有图标的
-    </g-button iconPosition="right">
+    </g-button>
     `
     };
   }

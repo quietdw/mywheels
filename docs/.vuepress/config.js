@@ -1,7 +1,7 @@
 module.exports = {
   base: '/mywheels/',
-  title: 'AwesomeUI',
-  description: 'amazing!',
+  title: 'JiangUI',
+  description: 'Vue UI',
   themeConfig: {
     nav: [{
         text: '主页',
