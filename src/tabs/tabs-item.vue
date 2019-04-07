@@ -49,7 +49,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$blue: #409eff;
+$red: #bd0d13;
 $disabled-text-color: #ccc;
 .tabs-item {
   display: flex;
@@ -60,9 +60,9 @@ $disabled-text-color: #ccc;
   height: 100%;
   padding: 0 1em;
   &.active {
-    color: $blue;
+    color: $red;
     .g-icon {
-      fill: $blue;
+      fill: $red;
     }
   }
   &.disabled {

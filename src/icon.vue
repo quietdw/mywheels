@@ -11,6 +11,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+$fill-color: #fff;
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -22,6 +23,7 @@ export default {
 .g-icon {
   width: 1em;
   height: 1em;
+  fill: $fill-color;
 }
 .loading {
   animation: spin 1.5s infinite linear;

@@ -36,31 +36,43 @@ export default {
 $border-radius: 4px;
 $font-size: 14px;
 $button-height: 32px;
-$button-bg: #fff;
-$button-active-bg: #eee;
-$border-color: #999;
-$border-hover-color: #666;
-$color: #333;
+$button-bg: #d51218;
+$button-bg-linear: linear-gradient(to bottom, #e51922 0%, #bb060b 100%);
+$button-hover-bg: #e7262d;
+$button-hover-bg-linear: linear-gradient(to bottom, #f32f36 0%, #d4171e 100%);
+$border-color: #bd0d13;
+$border-active-color: #d6343a;
+$color: #fff;
+$text-shadow-color: #8a060b;
 
 .g-button {
   font-size: $font-size;
   height: $button-height;
-  padding: 0 0.85em;
+  padding: 0 2em;
   border-radius: $border-radius;
   border: 1px solid $border-color;
   background: $button-bg;
+  background: $button-bg-linear;
   color: $color;
+  text-shadow: 0 1px 0 $text-shadow-color;
   cursor: pointer;
   display: inline-flex;
   vertical-align: top;
   justify-content: center;
   align-items: center;
+  box-shadow: inset 1px 1px 0px 0px #da111a, inset -1px -1px 0px 0px #da111a,
+    0px 2px 3px 0px #b6b6b6;
   &:hover {
-    border-color: $border-hover-color;
+    background: $button-hover-bg;
+    background: $button-hover-bg-linear;
+    box-shadow: inset 1px 1px 0px 0px #e92a34, inset -1px -1px 0px 0px #e92a34,
+      0px 2px 3px 0px #ccc;
   }
 
   &:active {
-    background-color: $button-active-bg;
+    border-color: $border-active-color;
+    box-shadow: inset 1px 1px 0px 0px #e92a34, inset -1px -1px 0px 0px #e92a34,
+      0px 2px 3px 0px #ddd;
   }
 
   &:focus {
@@ -68,10 +80,10 @@ $color: #333;
   }
   &.icon-right > .g-icon {
     order: 1;
-    margin-left: 0.3em;
+    margin-left: 0.5em;
   }
   &.icon-left > .g-icon {
-    margin-right: 0.3em;
+    margin-right: 0.5em;
   }
 }
 </style>

@@ -85,7 +85,10 @@ export default {
       let { width, height, left, top } = triggerWrapper.getBoundingClientRect();
 
       let positions = {
-        top: { left: left + window.scrollX, top: top + window.scrollY },
+        top: {
+          left: left + window.scrollX,
+          top: top + window.scrollY
+        },
         right: {
           left: left + width + window.scrollX,
           top: top + window.scrollY
@@ -125,7 +128,6 @@ export default {
       }, 0);
     },
     close() {
-      console.log("关闭了");
       this.visible = false;
       document.removeEventListener("click", this.eventHandler);
     },

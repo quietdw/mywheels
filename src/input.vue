@@ -48,7 +48,7 @@ $border-hover-color: #666;
 $border-radius: 4px;
 $font-size: 14px;
 $box-shadow-color: rgba(0, 0, 0, 0.5);
-$red: #f1453d;
+$red: #bd0d13;
 
 .wapper {
   font-size: $font-size;
@@ -80,6 +80,7 @@ $red: #f1453d;
   }
   &.error {
     > input {
+      box-shadow: inset 0 1px 3px $red;
       border-color: $red;
     }
     > .icon-error {

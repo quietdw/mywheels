@@ -16,7 +16,7 @@ export default {
   props: {
     autoClose: {
       type: [Boolean, Number],
-      default: false,
+      default: 5,
       valitator(value) {
         return value === false || typeof value === "number";
       }
@@ -83,12 +83,12 @@ export default {
 $border-radius: 4px;
 $toast-min-height: 32px;
 $font-size: 14px;
-$toast-color: #000;
-$toast-bg: #fff;
+$toast-color: #fff;
+$toast-bg: #242424;
 .wapper {
   position: fixed;
   left: 50%;
-
+  z-index: 30;
   &.align-top {
     top: 0;
     animation: slide-in 0.3s linear;
@@ -146,15 +146,14 @@ $toast-bg: #fff;
     min-height: $toast-min-height;
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 10px;
     background: $toast-bg;
-    color: toast-color;
+    color: $toast-color;
     font-size: $font-size;
     & > .message {
-      padding: 8px 0;
     }
     & > .line {
-      border-left: solid white 2px;
+      border-left: solid white 1px;
       display: block;
       height: 100%;
       margin: 0 10px;
