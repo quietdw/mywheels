@@ -1,6 +1,6 @@
 {
-  "name": "mywheels-t-1-1",
-  "version": "0.0.2",
+  "name": "jiangui",
+  "version": "1.0.0",
   "description": "UI",
   "main": "dist/index.js",
   "scripts": {
